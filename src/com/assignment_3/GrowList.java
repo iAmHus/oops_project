@@ -9,25 +9,40 @@ public class GrowList <E> {
     public GrowList() { values = new HashMap<Integer,E>();}
 
     // add to the end of the list
-    public void add(E o) {
-        values.put(size(), o);
+    // add becomes a producer as it returns a new state of the object
+    public GrowList add(E o) {
+    	GrowList gl = new GrowList <E>();
+    	gl = (GrowList)values;
+        gl.set(size()+1, o);
+        return gl;
     }
 
     // number of values in list
     public int size() { return values.size(); }
 
     // get ith value in list
+    // get is a observer
     public E get(int i) {
         if (! inRange(i)) throw new IndexOutOfBoundsException("GrowList.get");
         return values.get(i);
     }
 
     // update ith value in list;  return previous value or null if none
+    // set is also a mutator with producer
     public E set(int i, E o) {
-        if (! inRange(i)) throw new IndexOutOfBoundsException("GrowList.set");
-        return values.put(i, o);
+       // if (! inRange(i)) throw new IndexOutOfBoundsException("GrowList.set");
+    	GrowList gl1 = new GrowList <E>();
+    	gl1 = (GrowList)values;
+        return (E) gl1.put(i, o);
     }
+    
+    private E put(int i, E o) {
+		// TODO Auto-generated method stub
+    	return values.put(i, o);
+	}
+    
 
+	
     // private helper method
     private boolean inRange(int i) { return (i >= 0) && (i < size()); }
 
