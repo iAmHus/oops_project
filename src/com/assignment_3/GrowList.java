@@ -2,15 +2,28 @@ package com.assignment_3;
 
 import java.util.*;
 //  GrowList is a mutable list that only gets longer.
-public final class GrowList <E> {
 
-    private final Map<Integer,E> values;
+// GitKraken Sample commit
+public class GrowList<E> {
 
+    private Map<Integer,E> values;
+
+    // Changed the visibility of the constructor to private
     private GrowList() { values = new HashMap<Integer,E>();}
 
     // add to the end of the list
-    public void add(E o) {
-        values.put(size(), o);
+
+    // Writing a producer method - that imposes the immutability behavior
+
+    public GrowList<E> add(E o) {
+
+        GrowList result = new GrowList();
+        result.values.putAll(this.values);
+
+        result.values.put(size(), o);
+
+        return result;
+//        values.put(size(), o);
     }
 
     // number of values in list
@@ -23,9 +36,15 @@ public final class GrowList <E> {
     }
 
     // update ith value in list;  return previous value or null if none
-    public E set(int i, E o) {
+    public GrowList<E> set(int i, E o) {
         if (! inRange(i)) throw new IndexOutOfBoundsException("GrowList.set");
-        return values.put(i, o);
+
+        GrowList result = new GrowList();
+        result.values.putAll(this.values);
+
+        result.values.put(i, o);
+
+        return result;
     }
 
     // private helper method
