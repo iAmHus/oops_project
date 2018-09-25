@@ -1,17 +1,22 @@
 package com.assignment_4;
 
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 public class GrowListTest {
+
+
 
 
     /**
      * testAdd - Add the value to the list - and checks
      *                                              - if the value is actually added.
-     *                                              - if the set operation generated a new object - adhering to immutability principles
-     */
+     *
+     *                                              */
     @org.junit.Test
     public void testAdd() {
 
@@ -19,7 +24,51 @@ public class GrowListTest {
 
         list1.add("Sample1");
 
-        
+        assertEquals(1, list1.size());
+        assertEquals("Sample1", list1.get(0));
+    }
+
+    /**
+     * testAddWithFailingContract - Add the value to the list - and checks
+     *                                              - if the value is actually added.
+     *
+
+     */
+    @org.junit.Test
+    public void testAddWithFailingContract() {
+
+        GrowList<String> list1 = new GrowList<>();
+
+        list1.addWithFailingContract("Sample1");
+
+        assertEquals(1, list1.size());
+        assertEquals("Sample1", list1.get(0));
+
+    }
+
+    /**
+     * testAddWithFailingContract - Add the value to the list - and checks
+     *                                              - if the value is actually added.
+     *                                              - if the set operation generated a new object - adhering to immutability principles
+     */
+    @org.junit.Test
+    public void testAddingWithFailingRepOk() {
+
+        GrowList<String> list1 = new GrowList<>();
+
+        assertDoesNotThrow(() -> list1.addWithFailingRepOk(null));
+
+    }
+
+    @Test
+    public void testSet() {
+        GrowList list = new GrowList();
+
+        list.add("First");
+
+        list.set(0,"bla");
+
+        assertEquals("bla", list.get(0));
     }
 
     /**
@@ -35,24 +84,45 @@ public class GrowListTest {
         list.add("First");
 
         list.setWithFailingContract(0,"Bla");
-
         assertEquals("Bla", list.get(0));
-
     }
     /**
      * testSet - Sets the value to the list - and checks
      *                                              - if the value is actually set.
      *                                              - if the set operation generated a new object - adhering to immutability principles
+     *
+     *
+     * Failing test case with a failing rep-invariant  - because the repinvariant
      */
+
     @org.junit.Test
-    public void testSetWithFailingRepInvariant() {
+    public void testSetWithFailingRepInvariantForNegativeIndex() {
 
         GrowList<String> list = new GrowList<>();
 
         list.add("First");
 
-        list.setWithFailingRepInvariant(-4,"Bla");
+        assertDoesNotThrow(() -> list.setWithFailingRepInvariant(-4,"Bla"));
 
         assertEquals("Bla", list.get(-4));
+    }
+
+    /**
+     * testSet - Sets the value to the list - and checks
+     *                                              - if the value is actually set.
+     *                                              - if the set operation generated a new object - adhering to immutability principles
+     *
+     *
+     * Failing test case with a failing rep-invariant  - because the repinvariant
+     */
+
+    @org.junit.Test
+    public void testSetWithFailingRepInvariantForNullValue() {
+
+        GrowList<String> list = new GrowList<>();
+
+        list.add("First");
+
+        assertDoesNotThrow(() -> list.setWithFailingRepInvariant(1,null));
     }
 }

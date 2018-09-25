@@ -7,7 +7,7 @@ public class GrowListTest {
 
 
     /**
-     * testAdd - Add the value to the list - and checks
+     * testAddWithFailingContract - Add the value to the list - and checks
      *                                              - if the value is actually added.
      *                                              - if the set operation generated a new object - adhering to immutability principles
      */
