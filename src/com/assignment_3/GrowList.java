@@ -6,30 +6,29 @@ import java.util.Map;
 
 
 /**
- *  Contributions:
- *          *      - Murtuza Hussain Shareef(G01024452)
- *          *              - Implementation for the findPrimeFactor method
- *          *              - Top-level Javadoc and for all the utility methods involved
- *          *      - Harisha Rajam Swaminathan(G01085509)
- *          *              - Suggested more boundary scenarios that the code should cater to
- *          *              - JavaDoc for the findPrimeFactor method
- *          *      - Shubham Pudi (G01087664)
- *          *              Tested using Junit for different scenarios where
- *          *                  - positive flows were covered
- *          *                  - exceptions were thrown
- *          *
- *          *       In addition to this, every one contributed their ideas when collaborating and building the code together
+ * Contributions:
+ * *      - Murtuza Hussain Shareef(G01024452)
+ * *              - Implementation for the findPrimeFactor method
+ * *              - Top-level Javadoc and for all the utility methods involved
+ * *      - Harisha Rajam Swaminathan(G01085509)
+ * *              - Suggested more boundary scenarios that the code should cater to
+ * *              - JavaDoc for the findPrimeFactor method
+ * *      - Shubham Pudi (G01087664)
+ * *              Tested using Junit for different scenarios where
+ * *                  - positive flows were covered
+ * *                  - exceptions were thrown
+ * *
+ * *       In addition to this, every one contributed their ideas when collaborating and building the code together
  *
  * @param <E> the type parameter - to add to the list
  */
-public class GrowList<E> {
+ class GrowList<E> {
 
     private Map<Integer, E> values;
 
 
     /**
      * Public constructor - that instantiates a new GrowList.
-     *
      */
     public GrowList() {
         values = new HashMap<>();
@@ -37,7 +36,6 @@ public class GrowList<E> {
 
     /**
      * Private constructor - that instantiates a new GrowList AND adds the existing elements back to the new GrowList.
-     *
      */
     private GrowList(Map<Integer, E> values) {
         this.values = new HashMap<>();
@@ -58,6 +56,8 @@ public class GrowList<E> {
         GrowList result = new GrowList(this.values);
 
         result.values.put(size(), o);
+
+        repOk();
 
         return result;
     }
@@ -88,7 +88,21 @@ public class GrowList<E> {
 
         result.values.put(i, o);
 
+        repOk();
+
         return result;
+    }
+
+
+    private boolean repOk() {
+
+        for (Integer key : this.values.keySet()) {
+
+            if (key == null || !inRange(key)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     // private helper method
