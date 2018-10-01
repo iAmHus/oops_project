@@ -1,10 +1,8 @@
-package com.assignment_4;
-
-
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 public class GrowListTest {
 
 
@@ -12,7 +10,7 @@ public class GrowListTest {
      * testAdd - Add the value to the list - valid method
      *
      *                                              */
-    @org.junit.Test
+    @Test
     public void testAdd() {
 
         GrowList<String> list1 = new GrowList<>();
@@ -28,7 +26,7 @@ public class GrowListTest {
      *                                              - if the value is actually added.
      *
      */
-    @org.junit.Test
+    @Test
     public void testAddWithFailingContract() {
 
         GrowList<String> list1 = new GrowList<>();
@@ -44,7 +42,7 @@ public class GrowListTest {
      *                                              - if the repOk is still valid
      *                                              - we added a null value and that fails the repOk check
      */
-    @org.junit.Test
+    @Test
     public void testAddingWithFailingRepOk() {
 
         GrowList<String> list1 = new GrowList<>();
@@ -73,7 +71,7 @@ public class GrowListTest {
      *
      *           Adds a value and checks if the value can be over-ridden using the set method
      */
-    @org.junit.Test
+    @Test
     public void testSetWithFailingContract() {
 
         GrowList<String> list = new GrowList<>();
@@ -91,7 +89,7 @@ public class GrowListTest {
      * Failing test case with a failing rep-invariant  - because the index check in rep-invariant fails
      */
 
-    @org.junit.Test
+    @Test
     public void testSetWithFailingRepInvariantForInvalidIndex() {
 
         GrowList<String> list = new GrowList<>();
@@ -111,7 +109,7 @@ public class GrowListTest {
      * Failing test case with a failing rep-invariant  - because the value != null check in rep-invariant fails
      */
 
-    @org.junit.Test
+    @Test
     public void testSetWithFailingRepInvariantForNullValue() {
 
         GrowList<String> list = new GrowList<>();

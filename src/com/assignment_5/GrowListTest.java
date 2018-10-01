@@ -1,19 +1,18 @@
 package com.assignment_5;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.Test;
 import java.util.*;
 public class GrowListTest {
 
 	 @org.junit.Test
 	public void hasNextTest() {
-		//int c =0;
 		GrowList<String> gl = new GrowList<String>();
 		Iterator<String> it = gl.iterator();
 		gl.add("bing");
 		gl.add("chandler");
-		assertEquals(it.hasNext(),"true");
+		assertTrue(it.hasNext());
 	}
 	 
     @org.junit.Test
@@ -22,9 +21,16 @@ public class GrowListTest {
     	Iterator<String> it = gl1.iterator();
     	gl1.add("bing");
     	gl1.add("chandler");
-    	assertEquals(it.next(),"chandler");
-    	
+    	assertEquals(it.next(),"bing");
     }
-	
+
+    @org.junit.Test
+	public void testRemove() {
+        GrowList<String> gl1 = new GrowList<String>();
+        Iterator<String> it = gl1.iterator();
+        gl1.add("bing");
+
+        assertThrows(UnsupportedOperationException.class, ()-> it.remove());
+	}
 
 }

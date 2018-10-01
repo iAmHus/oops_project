@@ -1,5 +1,5 @@
-package com.assignment_4;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The type Grow list.
@@ -13,7 +13,7 @@ import java.util.*;
  *
  * Contributions:
  * *      - Murtuza Hussain Shareef(G01024452)
- * *              - Implementation for the findPrimeFactor method
+ * *              - Implementation for the GrowList method
  * *              - Top-level Javadoc and for all the utility methods involved
  * *      - Harisha Rajam Swaminathan(G01085509)
  * *              - Suggested more boundary scenarios that the code should cater to
@@ -138,7 +138,6 @@ public class GrowList <E> {
         if (!repOk()) {
             throw new IllegalArgumentException("RepOk failed - Bad argument passed ! Please check and resend");
         }
-
         return values.get(i);
     }
 

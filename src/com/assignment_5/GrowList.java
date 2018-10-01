@@ -1,10 +1,8 @@
 package com.assignment_5;
 import java.util.*;
-import java.util.Iterator;
 
 
-
-public class GrowList <E> implements Iterable<E>{
+public class GrowList<E> implements Iterable<E>{
 
 	  private Map<Integer,E> values;
 
@@ -42,39 +40,56 @@ public class GrowList <E> implements Iterable<E>{
 	      return result + values.get(size() - 1) + "]";
 	  }
 
-	  private class iterator implements Iterator<E>{
+	  private class Iterator implements java.util.Iterator<E> {
 		  
-		  int current = 0;
+		  int currentIdx ;
+
+		  @Override
 		  public boolean hasNext() {
-			  if(current < values.size())
-			  {
+			  if(currentIdx < values.size()) {
 				  System.out.println("hasnext");
 				  return true;
-			  }
-			  else
-			  {
+			  } else {
 				  System.out.println("hasnextfalse");
 			     return false;
 			  }
 		  }
+
+		  @Override
 		  public E next() {
 			  if(!hasNext()) {
 				  throw new NoSuchElementException();
-			  }
-			  else
-			  {
+			  } else {
 				 System.out.println("next true"); 
-				 return values.get(current++);
+				 return values.get(currentIdx++);
 			  }
-			  
 		  }
-	 }
-	  public Iterator<E> iterator()
-	  {
-		  return new iterator();
+
+		  // Adjust the elements to cover the hole after removing the element
+		  // current index  has to be adjusted as well
+		  // An example from class that was used in Poly.java
+
+//		  public void remove (int x) {
+//			  //Modifies: this
+//			  //Effects: Remove x from this
+//			  int i = getIndex(new Integer(x));
+//			  if (i < 0) return;
+//			  els.set(i, els.lastElement());
+//			  els.remove(els.size() - 1); }
+//
+		  @Override
+		  public void remove() {
+				throw new UnsupportedOperationException("Grow list can only grow, dude !");
+		  }
 	  }
-	  public static void main(String[] args) {
-	     GrowList<String> list = new GrowList<String>();
+
+	@Override
+	public java.util.Iterator<E> iterator() {
+		return new Iterator();
+	}
+
+	public static void main(String[] args) {
+	     GrowList<String> list = new GrowList();
 
 	     System.out.println("list is:" + list);
 	     list.add("cat");
@@ -83,6 +98,15 @@ public class GrowList <E> implements Iterable<E>{
 	     System.out.println("list is:" + list);
 	     list.set(1,"bat");
 	     System.out.println("list is:" + list);
+
+//	     list.forEach(System.out::println);
+//
+//	     java.util.Iterator it = list.iterator();
+//
+//	     while(it.hasNext()) {
+//	     	System.out.println(it.next());
+//		 }
+
 	     for(String s: list)              //syntax question ??
 	     {
 	    	 System.out.println(s);
