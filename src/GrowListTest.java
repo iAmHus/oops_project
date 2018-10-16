@@ -1,121 +1,67 @@
-import org.junit.Test;
+import com.assignment_5.GrowList;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import java.util.Iterator;
+
+import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class GrowListTest {
 
 
     /**
-     * testAdd - Add the value to the list - valid method
-     *
-     *                                              */
-    @Test
-    public void testAdd() {
+     * Test iterable type. - Tests if the GrowList is of type iterable (i.e.) if it has an Iterator
+     */
+    @org.junit.Test
+    public void testIterableType() {
+        GrowList<String> gl1 = new GrowList();
+        gl1.add("bing");
+        gl1.add("chandler");
 
-        GrowList<String> list1 = new GrowList<>();
-
-        list1.add("Sample1");
-
-        assertEquals(1, list1.size());
-        assertEquals("Sample1", list1.get(0));
+        assertTrue(gl1.iterator() instanceof  Iterator);
     }
 
     /**
-     * testAddWithFailingContract - Add the value to the list  (after SDL mutation)- and checks
-     *                                              - if the value is actually added.
-     *
+     * Test has next - Tests the hasNext() functionality - returns true in case there is an element and returns false
+     * after the end of the list is reached
      */
-    @Test
-    public void testAddWithFailingContract() {
+    @org.junit.Test
+	public void testHasNext() {
+		GrowList<String> gl = new GrowList();
+		Iterator<String> it = gl.iterator();
 
-        GrowList<String> list1 = new GrowList<>();
+		gl.add("bing");
+		gl.add("chandler");
+		assertTrue(it.hasNext());
 
-        list1.addWithFailingContract("Sample1");
+		it.next();
+		it.next();
+		assertFalse(it.hasNext());
+	}
 
-        assertEquals(1, list1.size());
-        assertEquals("Sample1", list1.get(0));
+    /**
+     * Test next - Test if the next() function is working properly
+     */
+    @org.junit.Test
+   public void testNext() {
+    	GrowList<String> gl1 = new GrowList();
+    	Iterator<String> it = gl1.iterator();
+    	gl1.add("bing");
+    	gl1.add("chandler");
+    	assertEquals(it.next(),"bing");
+    	assertEquals(it.next(),"chandler");
     }
 
     /**
-     * testAddingWithFailingRepOk - Add the value to the list (after SDL mutation)- and checks
-     *                                              - if the repOk is still valid
-     *                                              - we added a null value and that fails the repOk check
+     * Test remove - Tests the remove function - expects an Unsupported Exception - as Grow List is only supposed to grow
      */
-    @Test
-    public void testAddingWithFailingRepOk() {
+    @org.junit.Test
+	public void testRemove() {
+        GrowList<String> gl1 = new GrowList();
+        Iterator<String> it = gl1.iterator();
+        gl1.add("bing");
 
-        GrowList<String> list1 = new GrowList<>();
-
-        assertDoesNotThrow(() -> list1.addWithFailingRepOk(null));
-    }
+        assertThrows(UnsupportedOperationException.class, ()-> it.remove());
+	}
 
 
-    /**
-     * Test set. - test case for the valid set method
-     */
-    @Test
-    public void testSet() {
-        GrowList list = new GrowList();
-
-        list.add("First");
-
-        list.set(0,"bla");
-
-        assertEquals("bla", list.get(0));
-    }
-
-    /**
-     * testSet - Sets the value to the list (after SDL mutation)- and checks
-     *                                              - if the value is actually set.
-     *
-     *           Adds a value and checks if the value can be over-ridden using the set method
-     */
-    @Test
-    public void testSetWithFailingContract() {
-
-        GrowList<String> list = new GrowList<>();
-
-        list.add("First");
-
-        list.setWithFailingContract(0,"Bla");
-        assertEquals("Bla", list.get(0));
-    }
-    /**
-     * testSetWithFailingRepInvariantForInvalidIndex (after SDL mutation)- Sets the value to the list - and checks
-     *                                              - if the value is actually set.
-     *
-     *
-     * Failing test case with a failing rep-invariant  - because the index check in rep-invariant fails
-     */
-
-    @Test
-    public void testSetWithFailingRepInvariantForInvalidIndex() {
-
-        GrowList<String> list = new GrowList<>();
-
-        list.add("First");
-
-        assertDoesNotThrow(() -> list.setWithFailingRepInvariant(-4,"Bla"));
-
-        assertEquals("Bla", list.get(-4));
-    }
-
-    /**
-     * testSetWithFailingRepInvariantForNullValue - Sets the value to the list (after SDL mutation) - and checks
-     *                                              - if the value is actually set.
-     *
-     *
-     * Failing test case with a failing rep-invariant  - because the value != null check in rep-invariant fails
-     */
-
-    @Test
-    public void testSetWithFailingRepInvariantForNullValue() {
-
-        GrowList<String> list = new GrowList<>();
-
-        list.add("First");
-
-        assertDoesNotThrow(() -> list.setWithFailingRepInvariant(1,null));
-    }
 }

@@ -2,6 +2,24 @@ package com.assignment_5;
 import java.util.*;
 
 
+/**
+ * The type Grow list - that is iterable !
+ *
+ * (i.e) It gives access to a method - that can act as an iterator
+ *
+ * Contributions:
+ * *      - Shubham Pudi (G01087664)
+ * *              - Implementation for the GrowList method
+ * *              - Top-level Javadoc and for all the utility methods involved
+ * *      - Harisha Rajam Swaminathan(G01085509)
+ * *              - Suggested more boundary scenarios that the code should cater to
+ * *              - JavaDoc for the findPrimeFactor method
+ *       - Murtuza Hussain Shareef(G01024452)
+ *                  Tested using Junit for different scenarios where
+ *  * *                  - positive flows were covered
+ *  * *                  - exceptions were thrown
+ * @param <E> the type parameter
+ */
 public class GrowList<E> implements Iterable<E>{
 
 	  private Map<Integer,E> values;
@@ -46,13 +64,7 @@ public class GrowList<E> implements Iterable<E>{
 
 		  @Override
 		  public boolean hasNext() {
-			  if(currentIdx < values.size()) {
-				  System.out.println("hasnext");
-				  return true;
-			  } else {
-				  System.out.println("hasnextfalse");
-			     return false;
-			  }
+			  return (currentIdx < values.size());
 		  }
 
 		  @Override
@@ -60,26 +72,13 @@ public class GrowList<E> implements Iterable<E>{
 			  if(!hasNext()) {
 				  throw new NoSuchElementException();
 			  } else {
-				 System.out.println("next true"); 
 				 return values.get(currentIdx++);
 			  }
 		  }
 
-		  // Adjust the elements to cover the hole after removing the element
-		  // current index  has to be adjusted as well
-		  // An example from class that was used in Poly.java
-
-//		  public void remove (int x) {
-//			  //Modifies: this
-//			  //Effects: Remove x from this
-//			  int i = getIndex(new Integer(x));
-//			  if (i < 0) return;
-//			  els.set(i, els.lastElement());
-//			  els.remove(els.size() - 1); }
-//
 		  @Override
 		  public void remove() {
-				throw new UnsupportedOperationException("Grow list can only grow, dude !");
+				throw new UnsupportedOperationException("Remove operation is not supported on GrowList !");
 		  }
 	  }
 
@@ -99,18 +98,6 @@ public class GrowList<E> implements Iterable<E>{
 	     list.set(1,"bat");
 	     System.out.println("list is:" + list);
 
-//	     list.forEach(System.out::println);
-//
-//	     java.util.Iterator it = list.iterator();
-//
-//	     while(it.hasNext()) {
-//	     	System.out.println(it.next());
-//		 }
-
-	     for(String s: list)              //syntax question ??
-	     {
-	    	 System.out.println(s);
-	     }
-
+	     list.forEach(System.out::println);
 	  }
 	}
