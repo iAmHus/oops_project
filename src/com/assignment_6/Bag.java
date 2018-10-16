@@ -22,7 +22,7 @@ public class Bag<E> {
             int c = getValue(e);
             map.put(e, c + 1);
         } else {
-            map.put(e, 0);
+            map.put(e, 1);
         }
     }
 
