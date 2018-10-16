@@ -1,4 +1,4 @@
-package com.assigment_6;
+package com.assignment_6;
 
 import java.util.*;
 
