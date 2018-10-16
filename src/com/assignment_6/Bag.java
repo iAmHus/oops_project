@@ -21,6 +21,8 @@ public class Bag<E> {
         if (isIn(e)) {
             int c = getValue(e);
             map.put(e, c + 1);
+        } else {
+            map.put(e, 0);
         }
     }
 
