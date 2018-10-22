@@ -10,11 +10,11 @@ import java.util.NoSuchElementException;
  *
  * Contributions:
  * *      - Shubham Pudi (G01087664)
- * *              - Implementation for the GrowList method
+ * *              - Implementation for the bag method
  * *              - Top-level Javadoc and for all the utility methods involved
  * *      - Harisha Rajam Swaminathan(G01085509)
  * *              - Suggested more boundary scenarios that the code should cater to
- * *              - JavaDoc for the findPrimeFactor method
+ * *              - JavaDoc for the repOk method
  *       - Murtuza Hussain Shareef(G01024452)
  *                  Tested using Junit for different scenarios where
  *  * *                  - positive flows were covered

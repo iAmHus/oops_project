@@ -16,6 +16,60 @@ public class BagTest {
     }
 
 
+    @Test
+    public void testInsert()
+    {
+        Bag<String> b = new Bag<>();
+
+        b.insert("Chandler");
+        assertEquals(1,b.getValue("Chandler"));
+    }
+    @Test
+    public void testRemove()
+    {
+        Bag<String> b = new Bag<>();
+        b.insert("Chandler");
+
+        b.remove("Chandler");
+        assertEquals(0,b.getValue("Chandler"));
+    }
+
+    @Test
+    public void testisIn()
+    {
+        Bag<String> b = new Bag<>();
+
+        b.insert("Joey");
+        assertTrue(b.isIn("Joey"));
+    }
+    @Test
+    public void testgetValue()
+    {
+        Bag<String> b = new Bag<>();
+
+        b.insert("Chandler");
+        assertEquals(1 ,b.getValue("Chandler"));
+    }
+    @Test
+    public void testSize()
+    {
+        Bag<String> b = new Bag<>();
+
+        b.insert("bla");
+        b.insert("cla");
+
+        assertEquals(2,b.size());
+    }
+
+    @Test
+    public void choose() {
+        Bag<String> b = new Bag<>();
+
+        b.insert("bla");
+
+        assertTrue(b.isIn(b.choose()));
+    }
+
     /**
      * Test properties rule.
      *
