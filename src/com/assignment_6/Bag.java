@@ -29,7 +29,7 @@ public class Bag<E> {
     // remove 1 occurrence of e from this
     public void remove(E e) {
         if (isIn(e)) {
-            map.remove(e);
+            map.put(e, map.get(e)-1);
         } else
             throw new NoSuchElementException("element not found");
     }
