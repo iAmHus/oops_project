@@ -14,18 +14,31 @@ import java.util.NoSuchElementException;
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class SubIntSetTest {
+public class SubIntSetTest {
 
 	@Test
      public void cloneSubIntSetTest()
     {
 	 SubIntSet s = new SubIntSet();
-	 assertEquals(s.clone(),s);
+	 assertNotEquals(s.clone(),s);
     }
 
-	public void cloneIntSetTest()
+	@Test
+	public void equalsTest()
 	{
-		IntSet i = new IntSet();
-		assertEquals(i.clone(),i);
+		SubIntSet s1 = new SubIntSet();
+		s1.els.add(12);
+		SubIntSet s2 = new SubIntSet();
+		s2.els.add(12);
+		assertTrue(s1.equals(s2));
+	}
+	@Test
+	public void hashcodeTest()
+	{
+		SubIntSet s1 = new SubIntSet();
+		s1.els.add(12);
+		SubIntSet s2 = new SubIntSet();
+		s2.els.add(12);
+		assertEquals(s1.hashCode(),s2.hashCode());
 	}
 }

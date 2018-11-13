@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SubIntSet extends IntSet {
-	private List<Integer> els;
+	public List<Integer> els;
 	private SubIntSet(List<Integer> list) 
 	{ els = list; }
 	public SubIntSet()
@@ -20,11 +20,13 @@ public class SubIntSet extends IntSet {
 	      if (!(obj instanceof SubIntSet)) return false;
 
 	      SubIntSet s = (SubIntSet) obj;
-	      return this.els == s.els;
+	      return this.els.equals(s.els);
 	   }
 
 	   @Override public int hashCode() { 
-	      // see below 
-	      return 42;
+		   int result = 0;
+			  for(Integer i : els)
+				   result = result+i.hashCode();
+		      return result;
 	   }
 }
