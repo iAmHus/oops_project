@@ -8,12 +8,16 @@ public ForwardingList(List<E>s)
 {
 	this.s = s;
 }
+public List<E> getList() {
+	return s;
+}
 @Override
 public boolean equals(Object o)
 {
-	List<String> lst = (List<String>)o;
-	return s.equals(lst);
+	ForwardingList lst = (ForwardingList) o;
+	return s.equals(lst.getList());
 }
+
 @Override
 public boolean add(E arg0) {
 	// TODO Auto-generated method stub
@@ -52,7 +56,7 @@ public boolean containsAll(Collection<?> arg0) {
 @Override
 public E get(int arg0) {
 	// TODO Auto-generated method stub
-	return null;
+	return s.get(arg0);
 }
 @Override
 public int indexOf(Object arg0) {
@@ -65,7 +69,7 @@ public boolean isEmpty() {
 	return false;
 }
 @Override
-public Iterator<E> iterator() {
+public Iterator iterator() {
 	// TODO Auto-generated method stub
 	return null;
 }

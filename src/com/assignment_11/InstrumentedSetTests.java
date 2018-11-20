@@ -24,11 +24,11 @@ public class InstrumentedSetTests {
 		List<String> c1 = new LinkedList<String>();
     	c1.add("bee");
     	c1.add("ant");
-    	InstrumentedSetList <String> l = new InstrumentedSetList<String>(c1);
+    	InstrumentedSetList <String> l = new InstrumentedSetList<>(c1);
     	List<String> c2 = new LinkedList<String>();
     	c2.add("bee");
     	c2.add("ant");
-    	InstrumentedSetList <String> l1 = new InstrumentedSetList<String>(c2);
+    	InstrumentedSetList <String> l1 = new InstrumentedSetList<>(c2);
     	assertTrue(l.equals(l1));
     	
 	}

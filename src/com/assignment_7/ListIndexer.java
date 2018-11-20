@@ -28,8 +28,4 @@ public class ListIndexer<E extends String> implements Indexer<E> {
         return listElem.size();
     }
 
-
-
-
-
 }
