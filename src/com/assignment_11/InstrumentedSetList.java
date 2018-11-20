@@ -12,14 +12,5 @@ public class InstrumentedSetList<E> extends ForwardingList<E>{
 	@Override
 	public boolean add(E e) {addCount++; return super.add(e);}
 	public int getAddCount() {return addCount;}
-    public static void main(String[] args)
-    {
-    	List<String> c2 = new LinkedList<String>();
-    	c2 = Arrays.asList("bee","ant");
-    	Set <String> c1 = new InstrumentedSetList<String>(c2);
-    	if(c1.equals(c2))
-    	 System.out.println("equals");
-    	else
-    		System.out.println("not");
-    }
+   
 }

@@ -1,6 +1,6 @@
 package com.assignment_11;
 import java.util.*;
-public class ForwardingCollection<E> implements Set<E>{
+public class ForwardingCollection<E> implements Collection<E>{
 
 	private Collection<E> s;
 	public ForwardingCollection(Collection<E> s)

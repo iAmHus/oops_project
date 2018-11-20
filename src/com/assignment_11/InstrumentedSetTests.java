@@ -9,19 +9,27 @@ public class InstrumentedSetTests {
 	@Test
 	public void CollectionTest()
 	{
+	List<String> l = new LinkedList<String>();
+	l = Arrays.asList("bee","ant");
+	InstrumentedSet<String> c1 = new InstrumentedSet<String>(l);
+	Set<String> s = new HashSet<String>();
+	s.add("bee");s.add("ant");
+	InstrumentedSet<String> c2 = new InstrumentedSet<String>(s);
+	assertFalse(c1.equals(c2));
+   }
 	
-	Collection<String> c2 = new LinkedList<String>();
-	c2 = Arrays.asList("bee","ant");
-	Collection<String> c1 = new InstrumentedSet<String>(c2);
-	assertFalse(c2.equals(c1) && c1.equals(c2));
-	 }
-	
+	@Test
 	public void ListTest()
 	{
-		List<String> c2 = new LinkedList<String>();
-    	c2 = Arrays.asList("bee","ant");
-    	Set <String> c1 = new InstrumentedSetList<String>(c2);
-    	assertFalse(c2.equals(c1) && c1.equals(c2));
+		List<String> c1 = new LinkedList<String>();
+    	c1.add("bee");
+    	c1.add("ant");
+    	InstrumentedSetList <String> l = new InstrumentedSetList<String>(c1);
+    	List<String> c2 = new LinkedList<String>();
+    	c2.add("bee");
+    	c2.add("ant");
+    	InstrumentedSetList <String> l1 = new InstrumentedSetList<String>(c2);
+    	assertTrue(l.equals(l1));
     	
 	}
 }
