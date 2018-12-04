@@ -4,7 +4,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.*;
 
-//import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+/* 
+* InstrumentedSetList class extending ForwardingList class which implements the Lists interface 
+*   - Harisha Rajam Swaminathan(G01085509)
+*  
+*/
 
 public class InstrumentedSetList<E> extends ForwardingList<E>{
 	private int addCount = 0;
